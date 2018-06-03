@@ -2,7 +2,7 @@
 #include <string.h>
 #include <string>
 using namespace std;
-
+//Estructuras 
 struct Equipos
 {
 	int numEq;
