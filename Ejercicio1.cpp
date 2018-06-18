@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string.h>
 #include <string>
+#include <ctime>
+#include <cstdlib>
+
 using namespace std;
 //Estructuras 
 struct Equipos
@@ -14,28 +17,38 @@ struct Bolilleros
 {
 	int numBol;
 	char nombre[30];
-	Equipos eq[8];
 };
 //struct que servira para los otros ejercicios
 struct Grupo
 {
-	char nombreGrupo;
-	Equipos eq[4];
+	char nombreGrupo; // de la A a la H
+	Equipos gr; // 8 grupos de 4 equipos
+	
 };
 
 //prototipos de funcion
+//void sortearFaseGrupos(Grupo vec[], Grupo g, Bolilleros vec[], int &len, int&len);
+
 void cargarArchivo(Equipos vec[], FILE *f, int n);
+//void cargarEquiposEnBolilleros(FILE *f, Bolilleros vec[], &len, Equipos vec[]);
 void mostrar(Equipos vec[], FILE *f, int numBol);
 
 int main() {
 	
+	
 	int n = 32;
 	Equipos vecEquipos[n];
+	Bolilleros bol;
+	Bolilleros bol1[8];
+	Bolilleros bol2[8];
+	Bolilleros bol3[8];
+	Bolilleros bol4[8];
 	
-	//Bolilleros vecBolilleros[4]; para continuar con los otros ejercicios
+	char nombre[30];
 	
 	int lenEq = 0;
-	int lenBolilleros=0;
+	int lenBol=0;
+	int lenGrupo = 0;
 	// Se crea el archivo
 	FILE *regEquipos = fopen ("Equipos.dat", "wb+");
 	
@@ -50,15 +63,17 @@ int main() {
 	{
 	cout << "_______________ " << endl;
 	cout << "****** BOLILLERO " << i << " ****** "<< endl;
-	cout << "_______________ " << endl;
-	
+	cout << "_______________ " << endl;		
 	mostrar(vecEquipos, regEquipos, i);
 	rewind(regEquipos);
 
 	}
+
+	
 	system("PAUSE");
 	fclose(regEquipos);
 	return 0;
+	
 }
 
 void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
@@ -239,31 +254,43 @@ void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
 	strcpy(vecEquipos[31].federacion, "CAF");
 	
 	// ESCRIBE EL ARCHIVO
-
+	
 	for (int i=0; i < n; i++)
 	{
+	
 	fwrite(&vecEquipos[i],sizeof(Equipos),1, regEquipos);
 	}	
 	return;
 }	
 
+
 void mostrar(Equipos vecEquipos[], FILE *regEquipos, int numBol)
 {
 	Equipos lineaEquipo; //struct para leer el archivo
 	int n = 32;
-	//for (int i=0; i< n; i++)
-	//{	
+
 	while(!feof(regEquipos) && lineaEquipo.numEq < n)
 	{
 		fread(&lineaEquipo, sizeof(Equipos), 1, regEquipos);
 		if (numBol == lineaEquipo.numBol)
 		{
+		//cout << "******* BOLILLERO "<< numBol<< "*******"<<endl;	
 		cout << "NOMBRE: " << lineaEquipo.nombre << endl;
 		cout << "FEDERACION: "<< lineaEquipo.federacion << endl;
 		cout << "_______________" << endl;
 		}
-	//}
+	
 }
-return;
+	return;
 }
+
+
+	
+/*	
+	srand( time( 0 ) );
+	int numeroAleatorio = rand(); // para el sorteo de la fase de grupos
+	int sorteo = ( numeroAleatorio % 8 ) + 1;
+	vecGrupo[sorteo];*/
+
+
 
