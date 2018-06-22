@@ -407,14 +407,39 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 		cout << g1[i].nombre<<endl;
 		cout << g1[i].federacion<<endl;
 		cout << "_______________________"<<endl;
-	} 
+	}
 	
-	
-	pos = generarNumeroAleatorio();
-	//cout << "La posicion es: " << pos <<endl;
-	//cout << bol1[pos].nombre <<endl;
- 	
-	
+
+
+	 for(i = 1; i <= 8; i++)
+	 {
+        
+		pos = generarNumeroAleatorio();
+ 
+        int aux2 = 0;
+ 
+        while(aux2 < i){
+ 
+            if(pos != bol1[aux2].numEq)
+                aux2++;
+ 
+            else{
+                    pos = generarNumeroAleatorio();
+                    aux2 = 0;
+ 
+                }
+        }
+ 
+        bol1[i].numEq = pos;
+        cout << bol1[i].numEq <<endl;
+		//pos = generarNumeroAleatorio(); 
+	if (pos == 0)
+	{
+		pos++;
+	}
+	switch (pos)
+	{
+	case 1:
 	strcpy(g2[j].nombreGrupo , "Grupo B");
 	g2[j].numEq = bol1[pos].numEq;
 	strcpy(g2[j].nombre, bol1[pos].nombre);
@@ -422,11 +447,13 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 
 	cout << g2[j].nombreGrupo <<endl;
 	cout << g2[j].nombre<<endl;
-	cout << g2[j].federacion<<endl;
+	cout << g2[j].federacion << endl;
 	cout << "_______________________"<<endl;
+	break;
 	
-	pos = generarNumeroAleatorio();
-		
+	case 2:
+	
+	
 	strcpy(g3[j].nombreGrupo , "Grupo C");
 	g3[j].numEq = bol1[pos].numEq;
 	strcpy(g3[j].nombre, bol1[pos].nombre);
@@ -435,82 +462,84 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	cout << g3[j].nombre<<endl;
 	cout << g3[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-		
+	
+	break;
 
-	pos = generarNumeroAleatorio();
-
+	case 3:
 	
 	strcpy(g4[j].nombreGrupo , "Grupo D");
 	g4[j].numEq = bol1[pos].numEq;
 	strcpy(g4[j].nombre, bol1[pos].nombre);
 	strcpy(g4[j].federacion, bol1[pos].federacion);
-
 	
 	cout << g4[j].nombreGrupo <<endl;
 	cout << g4[j].nombre<<endl;
 	cout << g4[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-	
-	
-	pos = generarNumeroAleatorio();
 
 	
+	break;
+	
+	case 4:
+		
 	strcpy(g5[j].nombreGrupo , "Grupo E");
 	g5[j].numEq = bol1[pos].numEq;
 	strcpy(g5[j].nombre, bol1[pos].nombre);
 	strcpy(g5[j].federacion, bol1[pos].federacion);
 
-	
 	cout << g5[j].nombreGrupo <<endl;
 	cout << g5[j].nombre<<endl;
 	cout << g5[j].federacion<<endl;
 	cout << "_______________________"<<endl;
 	
 	
-	pos = generarNumeroAleatorio();
-
+	break;
+	case 5:
 	
 	strcpy(g6[j].nombreGrupo , "Grupo F");
 	g6[j].numEq = bol1[pos].numEq;
 	strcpy(g6[j].nombre, bol1[pos].nombre);
 	strcpy(g6[j].federacion, bol1[pos].federacion);
-
+	
 	
 	cout << g6[j].nombreGrupo <<endl;
 	cout << g6[j].nombre<<endl;
 	cout << g6[j].federacion<<endl;
 	cout << "_______________________"<<endl;
 	
-	pos = generarNumeroAleatorio();
-
+	
+	break;
+	
+	case 6:	
 	
 	strcpy(g7[j].nombreGrupo , "Grupo G");
 	g7[j].numEq = bol1[pos].numEq;
 	strcpy(g7[j].nombre, bol1[pos].nombre);
 	strcpy(g7[j].federacion, bol1[pos].federacion);
-
 	
 	cout << g7[j].nombreGrupo <<endl;
 	cout << g7[j].nombre<<endl;
 	cout << g7[j].federacion<<endl;
 	cout << "_______________________"<<endl;
 	
+	break;
 	
-	pos = generarNumeroAleatorio();
-
+	case 7:
 	
 	strcpy(g8[j].nombreGrupo , "Grupo H");
 	g8[j].numEq = bol1[pos].numEq;
 	strcpy(g8[j].nombre, bol1[pos].nombre);
 	strcpy(g8[j].federacion, bol1[pos].federacion);
-
 	
 	cout << g8[j].nombreGrupo <<endl;
 	cout << g8[j].nombre<<endl;
 	cout << g8[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-		
-	
+
+	break;
+}
+
+}
 return;
 }
 void mostrar(FILE *regEquipos, int numBol)
