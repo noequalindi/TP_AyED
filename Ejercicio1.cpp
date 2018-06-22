@@ -3,9 +3,8 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
-
 using namespace std;
-//Estructuras 
+	
 struct Equipos
 {
 	int numEq;
@@ -13,45 +12,71 @@ struct Equipos
 	char nombre[30];
 	char federacion[30];
 };
-struct Bolilleros
+struct Bolillero
 {
 	int numBol;
+	int numEq;
 	char nombre[30];
+	char federacion[30];
+	
 };
-//struct que servira para los otros ejercicios
 struct Grupo
 {
-	char nombreGrupo; // de la A a la H
-	Equipos gr; // 8 grupos de 4 equipos
-	
+	char nombreGrupo[10];
+	int numBol;
+	int numEq;
+	char nombre[30];
+	char federacion[30];
 };
 
 //prototipos de funcion
-//void sortearFaseGrupos(Grupo vec[], Grupo g, Bolilleros vec[], int &len, int&len);
+void cargarVectorEquipos(Equipos vec[]);
 
 void cargarArchivo(Equipos vec[], FILE *f, int n);
-//void cargarEquiposEnBolilleros(FILE *f, Bolilleros vec[], &len, Equipos vec[]);
-void mostrar(Equipos vec[], FILE *f, int numBol);
+
+void mostrar(FILE *f, int numBol);
+
+int generarNumeroAleatorio();
+
+void cargarBolilleros(FILE *f,Equipos vec[], Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[]);
+void insertar(Grupo arr[], int &len, Bolillero bol[], int pos);
+void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[], Grupo g1[], Grupo g2[],Grupo g3[], Grupo g4[], Grupo g5[], 
+Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr);
+
 
 int main() {
 	
-	
+
+	int lenEq = 32;
 	int n = 32;
 	Equipos vecEquipos[n];
-	Bolilleros bol;
-	Bolilleros bol1[8];
-	Bolilleros bol2[8];
-	Bolilleros bol3[8];
-	Bolilleros bol4[8];
+	int arreglo[8];
+	Bolillero bol1[8];
+	Bolillero bol2[8];
+	Bolillero bol3[8];
+	Bolillero bol4[8];
 	
-	char nombre[30];
+	Grupo g1[4];
+	Grupo g2[4];
+	Grupo g3[4];
+	Grupo g4[4];
+	Grupo g5[4];
+	Grupo g6[4];
+	Grupo g7[4];
+	Grupo g8[4];
 	
-	int lenEq = 0;
+	int vecRepetidos[8];
+	
+	int lenGr = 0;
+	
+	
 	int lenBol=0;
-	int lenGrupo = 0;
 	// Se crea el archivo
 	FILE *regEquipos = fopen ("Equipos.dat", "wb+");
 	
+	
+	cargarVectorEquipos(vecEquipos);
+
 	// se graban los datos en el archivo en esta funcion
 	cargarArchivo(vecEquipos, regEquipos, n);	
 	
@@ -63,26 +88,62 @@ int main() {
 	{
 	cout << "_______________ " << endl;
 	cout << "****** BOLILLERO " << i << " ****** "<< endl;
-	cout << "_______________ " << endl;		
-	mostrar(vecEquipos, regEquipos, i);
+	cout << "_______________ " << endl;
+
+	mostrar(regEquipos, i);
 	rewind(regEquipos);
-
-	}
-
 	
-	system("PAUSE");
-	fclose(regEquipos);
-	return 0;
 	
 }
 
-void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
+	cargarBolilleros(regEquipos, vecEquipos, bol1,bol2,bol3,bol4);
+ 	cout << "Bolillero 1 "<< endl;
+	for (int j=0; j < 8; j++)
+	{
+		
+	cout << "_______________ " << endl;
+	cout << bol1[j].nombre << endl;
+	cout << bol1[j].federacion << endl;
+	
+	}
+		cout << "Bolillero 2"<< endl;
+		for (int j=0; j < 8; j++)
+	{
+		
+	cout << "_______________ " << endl;
+	cout << bol2[j].nombre << endl;
+	cout << bol2[j].federacion << endl;
+	
+	}
+		cout << "Bolillero 3 "<< endl;
+		for (int j=0; j < 8; j++)
+	{
+		
+	cout << "_______________ " << endl;
+	cout << bol3[j].nombre << endl;
+	cout << bol3[j].federacion << endl;
+	
+	}
+	cout << "Bolillero 4 "<< endl;
+		for (int j=0; j < 8; j++)
+	{
+		
+	cout << "_______________ " << endl;
+	cout << bol4[j].nombre << endl;
+	cout << bol4[j].federacion << endl;
+	
+	}
+
+	
+	sortearFaseGrupos(bol1,bol2,bol3,bol4, g1,  g2, g3,  g4,  g5,  g6,	 g7, g8, lenBol, lenGr);
+	fclose(regEquipos);	
+	system("PAUSE");
+	return 0;
+}
+void cargarVectorEquipos(Equipos vecEquipos[])
 {
-	n = 32;
 	// ************ BOLILLERO 1 ***************
 
-	cout << "*** SE CARGAN LOS EQUIPOS EN EL ARCHIVO... " <<endl;
-	
 	vecEquipos[0].numEq = 1;
 	vecEquipos[0].numBol = 1;
 	strcpy(vecEquipos[0].nombre, "Rusia");
@@ -253,44 +314,305 @@ void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
 	strcpy(vecEquipos[31].nombre, "Arabia Saudita");
 	strcpy(vecEquipos[31].federacion, "CAF");
 	
-	// ESCRIBE EL ARCHIVO
+	return;
 	
+}
+
+void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
+{
+	cout << "*** SE CARGAN LOS EQUIPOS EN EL ARCHIVO... *** " <<endl;
+	n = 32;
+	// ESCRIBE EL ARCHIVO CON EL VECTOR 
 	for (int i=0; i < n; i++)
 	{
-	
 	fwrite(&vecEquipos[i],sizeof(Equipos),1, regEquipos);
 	}	
 	return;
 }	
 
-
-void mostrar(Equipos vecEquipos[], FILE *regEquipos, int numBol)
+int generarNumeroAleatorio()
 {
-	Equipos lineaEquipo; //struct para leer el archivo
-	int n = 32;
+ 
+ /*   int aux = 0;
 
-	while(!feof(regEquipos) && lineaEquipo.numEq < n)
+    srand(time(0));
+ 
+    for(int i = 0; i < 8; i++){
+        aux =  (rand() % 8);
+ 
+        int aux2 = 0;
+ 
+        while(aux2 < i){
+ 
+            if (aux != arreglo[aux2])
+                aux2++;
+ 
+            else{
+                    aux = (rand() % 8);
+                    aux2 = 0;
+ 
+                }
+        }
+ 
+        arreglo[i] = aux;
+ 
+        cout << arreglo[i] << "\n";
+    }
+ 
+    return arreglo; */
+    
+	int numeroAleatorio = (rand() % 8); // para el sorteo de la fase de grupos se genera un numero aleatorio entre 0 y 7
+	int numEquipoSorteado = numeroAleatorio;
+
+	return numEquipoSorteado;
+}
+
+	
+
+/*bool estaRepetido(int vecRepetidos[])
+{
+	int arreglo[8];
+	vecRepetidos[8];
+	bool estaRepetido = false;
+	//int len = 0;
+	for (int k=0; k < 8; k++)
 	{
-		fread(&lineaEquipo, sizeof(Equipos), 1, regEquipos);
+		int pos = generarNumeroAleatorio();
+		if (vecRepetidos[k] == pos)
+		{
+			estaRepetido = true;
+		} 
+		
+	}
+	return estaRepetido;
+}
+*/
+void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[],Grupo g1[], Grupo g2[],Grupo g3[], Grupo g4[], Grupo g5[], 
+Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
+{
+	
+	int pos, i=0, j=1;
+
+	srand( time( NULL ) );
+	// sorteo del bolillero 1, solo se saca rusia y se inserta en el grupo A y el resto 7 equipos en el resto de los grupos
+		cout << "************** SORTEO **************"<<endl;
+	if ( i == 0)
+	{
+	
+		g1[i].numEq = bol1[i].numEq;
+		strcpy(g1[i].nombre, bol1[i].nombre);
+		strcpy(g1[i].federacion, bol1[i].federacion);
+		strcpy(g1[i].nombreGrupo, "Grupo A");
+		cout << g1[i].nombreGrupo<<endl;
+		cout << g1[i].nombre<<endl;
+		cout << g1[i].federacion<<endl;
+		cout << "_______________________"<<endl;
+	} 
+	
+	
+	pos = generarNumeroAleatorio();
+	//cout << "La posicion es: " << pos <<endl;
+	//cout << bol1[pos].nombre <<endl;
+ 	
+	
+	strcpy(g2[j].nombreGrupo , "Grupo B");
+	g2[j].numEq = bol1[pos].numEq;
+	strcpy(g2[j].nombre, bol1[pos].nombre);
+	strcpy(g2[j].federacion, bol1[pos].federacion);
+
+	cout << g2[j].nombreGrupo <<endl;
+	cout << g2[j].nombre<<endl;
+	cout << g2[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+	
+	pos = generarNumeroAleatorio();
+		
+	strcpy(g3[j].nombreGrupo , "Grupo C");
+	g3[j].numEq = bol1[pos].numEq;
+	strcpy(g3[j].nombre, bol1[pos].nombre);
+	strcpy(g3[j].federacion, bol1[pos].federacion);
+	cout << g3[j].nombreGrupo <<endl;
+	cout << g3[j].nombre<<endl;
+	cout << g3[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+		
+
+	pos = generarNumeroAleatorio();
+
+	
+	strcpy(g4[j].nombreGrupo , "Grupo D");
+	g4[j].numEq = bol1[pos].numEq;
+	strcpy(g4[j].nombre, bol1[pos].nombre);
+	strcpy(g4[j].federacion, bol1[pos].federacion);
+
+	
+	cout << g4[j].nombreGrupo <<endl;
+	cout << g4[j].nombre<<endl;
+	cout << g4[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+	
+	
+	pos = generarNumeroAleatorio();
+
+	
+	strcpy(g5[j].nombreGrupo , "Grupo E");
+	g5[j].numEq = bol1[pos].numEq;
+	strcpy(g5[j].nombre, bol1[pos].nombre);
+	strcpy(g5[j].federacion, bol1[pos].federacion);
+
+	
+	cout << g5[j].nombreGrupo <<endl;
+	cout << g5[j].nombre<<endl;
+	cout << g5[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+	
+	
+	pos = generarNumeroAleatorio();
+
+	
+	strcpy(g6[j].nombreGrupo , "Grupo F");
+	g6[j].numEq = bol1[pos].numEq;
+	strcpy(g6[j].nombre, bol1[pos].nombre);
+	strcpy(g6[j].federacion, bol1[pos].federacion);
+
+	
+	cout << g6[j].nombreGrupo <<endl;
+	cout << g6[j].nombre<<endl;
+	cout << g6[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+	
+	pos = generarNumeroAleatorio();
+
+	
+	strcpy(g7[j].nombreGrupo , "Grupo G");
+	g7[j].numEq = bol1[pos].numEq;
+	strcpy(g7[j].nombre, bol1[pos].nombre);
+	strcpy(g7[j].federacion, bol1[pos].federacion);
+
+	
+	cout << g7[j].nombreGrupo <<endl;
+	cout << g7[j].nombre<<endl;
+	cout << g7[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+	
+	
+	pos = generarNumeroAleatorio();
+
+	
+	strcpy(g8[j].nombreGrupo , "Grupo H");
+	g8[j].numEq = bol1[pos].numEq;
+	strcpy(g8[j].nombre, bol1[pos].nombre);
+	strcpy(g8[j].federacion, bol1[pos].federacion);
+
+	
+	cout << g8[j].nombreGrupo <<endl;
+	cout << g8[j].nombre<<endl;
+	cout << g8[j].federacion<<endl;
+	cout << "_______________________"<<endl;
+		
+	
+return;
+}
+void mostrar(FILE *regEquipos, int numBol)
+{
+	Equipos lineaEquipo; //struct para leer y guardar los datos del archivo
+	int n = 32;
+	fread(&lineaEquipo, sizeof(Equipos), 1, regEquipos);
+	while(!feof(regEquipos) && lineaEquipo.numEq <= n)
+	{
 		if (numBol == lineaEquipo.numBol)
 		{
-		//cout << "******* BOLILLERO "<< numBol<< "*******"<<endl;	
+		
 		cout << "NOMBRE: " << lineaEquipo.nombre << endl;
 		cout << "FEDERACION: "<< lineaEquipo.federacion << endl;
 		cout << "_______________" << endl;
+		
+}
+		fread(&lineaEquipo, sizeof(Equipos), 1, regEquipos);
+
+}
+
+
+
+return;
+}
+void cargarBolilleros (FILE *regEquipos, Equipos vecEquipos[], Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[])
+{
+	Equipos lineaEquipo; //struct para leer y guardar los datos del archivo
+	
+	fread(&vecEquipos[32], sizeof(Equipos), 1, regEquipos);
+	
+	int i=0, j=0, k=0, m=0;
+	
+	while(!feof(regEquipos))
+	{
+		int numBol = vecEquipos[32].numBol;	
+		
+		if (numBol == 1)
+		{
+			while ( i < 8 )
+			{
+			bol1[i].numBol = vecEquipos[i].numBol;
+			bol1[i].numEq = vecEquipos[i].numEq;
+			strcpy(bol1[i].nombre, vecEquipos[i].nombre);
+			strcpy(bol1[i].federacion, vecEquipos[i].federacion);
+			i++;
+			
+			}
+		}
+		
+			if (numBol == 2)
+		{
+			while ( j < 8 )
+			{
+				
+			bol2[j].numBol = vecEquipos[j+8].numBol;
+			bol2[j].numEq = vecEquipos[j+8].numEq;
+			strcpy(bol2[j].nombre, vecEquipos[j+8].nombre);
+			strcpy(bol2[j].federacion, vecEquipos[j+8].federacion);
+			j++;
+
+			}
+		}
+		
+		if (numBol == 3)
+		{
+			while ( k < 8 )
+			{
+			bol3[k].numBol = vecEquipos[k+16].numBol;
+			bol3[k].numEq = vecEquipos[k+16].numEq;
+			strcpy(bol3[k].nombre, vecEquipos[k+16].nombre);
+			strcpy(bol3[k].federacion, vecEquipos[k+16].federacion);
+			k++;
+
+			}
+		}
+		
+			if (numBol == 4)
+			{
+			while ( m < 8 )
+			{
+			bol4[m].numBol = vecEquipos[m+24].numBol;
+			bol4[m].numEq = vecEquipos[m+24].numEq;
+			strcpy(bol4[m].nombre, vecEquipos[m+24].nombre);
+			strcpy(bol4[m].federacion, vecEquipos[m+24].federacion);
+			m++;
+
+			}
 		}
 	
+		fread(&vecEquipos[32], sizeof(Equipos), 1, regEquipos);
+
 }
+return;
+}
+void insertar(Grupo vec[], int &len, Bolillero bol[], int pos){
+	
+	for(int i = len-1; i >= pos; i--){
+		vec[i+1] = vec[i];
+	}
+	
+	vec[pos].numBol = bol[pos].numBol;
+	len ++;
 	return;
 }
-
-
-	
-/*	
-	srand( time( 0 ) );
-	int numeroAleatorio = rand(); // para el sorteo de la fase de grupos
-	int sorteo = ( numeroAleatorio % 8 ) + 1;
-	vecGrupo[sorteo];*/
-
-
-
