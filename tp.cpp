@@ -40,7 +40,10 @@ int generarNumeroAleatorio(int num);
 
 void cargarBolilleros(FILE *f,Equipos vec[], Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[]);
 void insertar(Grupo arr[], int &len, Bolillero bol[], int pos);
-void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[], int lenBol);
+void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[], Grupo g1[], Grupo g2[],Grupo g3[], Grupo g4[], Grupo g5[], 
+Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr);
+bool estaRepetido(int vecRepetidos[]);
+void agregarNumeroSorteado(int pos, int vecRepetidos[]);
 
 int main() {
 	
@@ -54,6 +57,18 @@ int main() {
 	Bolillero bol3[8];
 	Bolillero bol4[8];
 	
+	Grupo g1[4];
+	Grupo g2[4];
+	Grupo g3[4];
+	Grupo g4[4];
+	Grupo g5[4];
+	Grupo g6[4];
+	Grupo g7[4];
+	Grupo g8[4];
+	
+	int vecRepetidos[8];
+	
+	int lenGr = 0;
 	
 	
 	int lenBol=0;
@@ -121,7 +136,7 @@ int main() {
 	}
 
 	
-	sortearFaseGrupos(bol1,bol2,bol3,bol4,lenBol);
+	sortearFaseGrupos(bol1,bol2,bol3,bol4, g1,  g2, g3,  g4,  g5,  g6,	 g7, g8, lenBol, lenGr);
 	fclose(regEquipos);	
 	system("PAUSE");
 	return 0;
@@ -316,8 +331,6 @@ void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
 	return;
 }	
 
-
-
 int generarNumeroAleatorio(int numEquipoSorteado)
 {
 
@@ -327,49 +340,67 @@ int generarNumeroAleatorio(int numEquipoSorteado)
 	return numEquipoSorteado;
 	
 }
-void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[], int lenBol)
+bool estaRepetido(int vecRepetidos[])
 {
-	Grupo g1[4];
-	Grupo g2[4];
-	Grupo g3[4];
-	Grupo g4[4];
-	Grupo g5[4];
-	Grupo g6[4];
-	Grupo g7[4];
-	Grupo g8[4];
+	int numEquipoSorteado;
+	vecRepetidos[8];
+	bool estaRepetido = false;
+	//int len = 0;
+	for (int k=0; k < 8; k++)
+	{
+		int pos = generarNumeroAleatorio(numEquipoSorteado);
+		if (vecRepetidos[k] == pos)
+		{
+			estaRepetido = true;
+		} 
+		
+	}
+	return estaRepetido;
+}
+
+void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[],Grupo g1[], Grupo g2[],Grupo g3[], Grupo g4[], Grupo g5[], 
+Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
+{
 	
-	int lenGr = 0;
 	
 	int numEquipoSorteado;
-	int pos;
-
+	int pos, i=0, j=0;
 
 	srand( time( NULL ) );
 	// sorteo del bolillero 1, solo se saca rusia y se inserta en el grupo A y el resto 7 equipos en el resto de los grupos
-	for (int i=0; i<8; i++)
-	{
-		if ( i == 0)
+	
+	if ( i == 0)
 	{
 		strcpy(g1[i].nombreGrupo, "Grupo A");
 		g1[i].numEq = bol1[i].numEq;
 		strcpy(g1[i].nombre, bol1[i].nombre);
 		strcpy(g1[i].federacion, bol1[i].federacion);
+	
 		cout << g1[i].nombreGrupo<<endl;
-	cout << g1[i].nombre<<endl;
+		cout << g1[i].nombre<<endl;
 	} 
 	
 	
-	pos = generarNumeroAleatorio(numEquipoSorteado);
-	cout << pos <<endl;
-	cout << bol1[pos].nombre <<endl; //= g2[j].numEq;
+	if (pos != 0)
+	{
 	
-	bol1[pos].numEq = g3[i].numEq;
-	strcpy(bol1[pos].nombre , g3[i].nombre);
+	cout << "La posicion es: " << pos <<endl;
+	cout << bol1[pos].nombre <<endl;
+	
+	strcpy(g2[j].nombreGrupo , "Grupo B");
+	bol1[pos].numEq = g2[j].numEq;
+	strcpy(g2[j].nombre, bol1[pos].nombre);
+	strcpy(g2[j].federacion, bol1[pos].federacion);
 
-	cout << g3[i].nombre<<endl;
-	lenGr ++;
-	}	
+	}
+	cout << g2[j].nombreGrupo <<endl;
+	cout << g2[j].nombre<<endl;
+	cout << g2[j].federacion<<endl;
+	j++;
+	lenGr ++;	
 	
+	
+
 
 return;
 }
