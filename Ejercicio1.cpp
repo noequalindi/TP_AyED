@@ -32,7 +32,7 @@ struct Grupo
 //prototipos de funcion
 void cargarVectorEquipos(Equipos vec[]);
 
-void cargarArchivo(Equipos vec[], FILE *f, int n);
+void cargarArchivo(Equipos vec[], int n);
 
 void mostrar(FILE *f, int numBol);
 
@@ -72,13 +72,13 @@ int main() {
 	
 	int lenBol=0;
 	// Se crea el archivo
-	FILE *regEquipos = fopen ("Equipos.dat", "wb+");
 	
 	
+	FILE *regEquipos = fopen("Equipos.dat", "rb");
 	cargarVectorEquipos(vecEquipos);
 
 	// se graban los datos en el archivo en esta funcion
-	cargarArchivo(vecEquipos, regEquipos, n);	
+	cargarArchivo(vecEquipos, n);	
 	
 	// Se posiciona al principio de todo
 	rewind(regEquipos);
@@ -134,9 +134,9 @@ int main() {
 	
 	}
 
-	
-	sortearFaseGrupos(bol1,bol2,bol3,bol4, g1,  g2, g3,  g4,  g5,  g6,	 g7, g8, lenBol, lenGr);
 	fclose(regEquipos);	
+	sortearFaseGrupos(bol1,bol2,bol3,bol4, g1,  g2, g3,  g4,  g5,  g6,	 g7, g8, lenBol, lenGr);
+
 	system("PAUSE");
 	return 0;
 }
@@ -318,15 +318,17 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	
 }
 
-void cargarArchivo(Equipos vecEquipos[], FILE *regEquipos, int n)
+void cargarArchivo(Equipos vecEquipos[], int n)
 {
+	FILE *regEquipos = fopen ("Equipos.dat", "wb+");
 	cout << "*** SE CARGAN LOS EQUIPOS EN EL ARCHIVO... *** " <<endl;
 	n = 32;
 	// ESCRIBE EL ARCHIVO CON EL VECTOR 
 	for (int i=0; i < n; i++)
 	{
 	fwrite(&vecEquipos[i],sizeof(Equipos),1, regEquipos);
-	}	
+	}
+	fclose(regEquipos);
 	return;
 }	
 
@@ -404,12 +406,11 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 		strcpy(g1[i].federacion, bol1[i].federacion);
 		strcpy(g1[i].nombreGrupo, "Grupo A");
 		cout << g1[i].nombreGrupo<<endl;
-		cout << g1[i].nombre<<endl;
+		cout << g1[i].nombre<<"-"<<" ";
 		cout << g1[i].federacion<<endl;
 		cout << "_______________________"<<endl;
 	}
 	
-
 
 	 for(i = 1; i <= 8; i++)
 	 {
@@ -432,11 +433,13 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
  
         bol1[i].numEq = pos;
         cout << bol1[i].numEq <<endl;
+    
 		//pos = generarNumeroAleatorio(); 
-	if (pos == 0)
+	if (bol1[i].numEq == 0)
 	{
-		pos++;
+		pos=1;
 	}
+
 	switch (pos)
 	{
 	case 1:
@@ -444,25 +447,28 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	g2[j].numEq = bol1[pos].numEq;
 	strcpy(g2[j].nombre, bol1[pos].nombre);
 	strcpy(g2[j].federacion, bol1[pos].federacion);
-
+	
 	cout << g2[j].nombreGrupo <<endl;
-	cout << g2[j].nombre<<endl;
+	cout << g2[j].nombre<<"-"<<" ";
 	cout << g2[j].federacion << endl;
 	cout << "_______________________"<<endl;
+	
+
+	
 	break;
 	
 	case 2:
-	
 	
 	strcpy(g3[j].nombreGrupo , "Grupo C");
 	g3[j].numEq = bol1[pos].numEq;
 	strcpy(g3[j].nombre, bol1[pos].nombre);
 	strcpy(g3[j].federacion, bol1[pos].federacion);
+	
 	cout << g3[j].nombreGrupo <<endl;
-	cout << g3[j].nombre<<endl;
+	cout << g3[j].nombre<<"-"<<" ";
 	cout << g3[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-	
+
 	break;
 
 	case 3:
@@ -471,29 +477,28 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	g4[j].numEq = bol1[pos].numEq;
 	strcpy(g4[j].nombre, bol1[pos].nombre);
 	strcpy(g4[j].federacion, bol1[pos].federacion);
-	
+		
 	cout << g4[j].nombreGrupo <<endl;
-	cout << g4[j].nombre<<endl;
+	cout << g4[j].nombre<<"-"<<" ";
 	cout << g4[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-
 	
+		
 	break;
 	
-	case 4:
-		
+	case 4:		
 	strcpy(g5[j].nombreGrupo , "Grupo E");
 	g5[j].numEq = bol1[pos].numEq;
 	strcpy(g5[j].nombre, bol1[pos].nombre);
 	strcpy(g5[j].federacion, bol1[pos].federacion);
-
+	
 	cout << g5[j].nombreGrupo <<endl;
-	cout << g5[j].nombre<<endl;
+	cout << g5[j].nombre<<"-"<<" ";
 	cout << g5[j].federacion<<endl;
 	cout << "_______________________"<<endl;
 	
-	
 	break;
+	
 	case 5:
 	
 	strcpy(g6[j].nombreGrupo , "Grupo F");
@@ -501,13 +506,12 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	strcpy(g6[j].nombre, bol1[pos].nombre);
 	strcpy(g6[j].federacion, bol1[pos].federacion);
 	
-	
 	cout << g6[j].nombreGrupo <<endl;
-	cout << g6[j].nombre<<endl;
+	cout << g6[j].nombre<<"-"<<" ";
 	cout << g6[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-	
-	
+
+
 	break;
 	
 	case 6:	
@@ -518,10 +522,10 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	strcpy(g7[j].federacion, bol1[pos].federacion);
 	
 	cout << g7[j].nombreGrupo <<endl;
-	cout << g7[j].nombre<<endl;
+	cout << g7[j].nombre<<"-"<<" ";
 	cout << g7[j].federacion<<endl;
 	cout << "_______________________"<<endl;
-	
+
 	break;
 	
 	case 7:
@@ -530,16 +534,18 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	g8[j].numEq = bol1[pos].numEq;
 	strcpy(g8[j].nombre, bol1[pos].nombre);
 	strcpy(g8[j].federacion, bol1[pos].federacion);
+
 	
 	cout << g8[j].nombreGrupo <<endl;
-	cout << g8[j].nombre<<endl;
+	cout << g8[j].nombre<<"-"<<" ";
 	cout << g8[j].federacion<<endl;
 	cout << "_______________________"<<endl;
 
 	break;
-}
 
 }
+}
+	
 return;
 }
 void mostrar(FILE *regEquipos, int numBol)
