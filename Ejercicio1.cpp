@@ -397,7 +397,7 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 
 	srand( time( NULL ) );
 	// sorteo del bolillero 1, solo se saca rusia y se inserta en el grupo A y el resto 7 equipos en el resto de los grupos
-		cout << "************** SORTEO **************"<<endl;
+	cout << "************** SORTEO **************"<<endl;
 	if ( i == 0)
 	{
 	
@@ -405,12 +405,12 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 		strcpy(g1[i].nombre, bol1[i].nombre);
 		strcpy(g1[i].federacion, bol1[i].federacion);
 		strcpy(g1[i].nombreGrupo, "Grupo A");
+		
 		cout << g1[i].nombreGrupo<<endl;
 		cout << g1[i].nombre<<"-"<<" ";
 		cout << g1[i].federacion<<endl;
 		cout << "_______________________"<<endl;
 	}
-	
 
 	 for(i = 1; i <= 8; i++)
 	 {
@@ -452,7 +452,6 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	cout << g2[j].nombre<<"-"<<" ";
 	cout << g2[j].federacion << endl;
 	cout << "_______________________"<<endl;
-	
 
 	
 	break;
@@ -544,6 +543,8 @@ Grupo g6[],	Grupo g7[],	Grupo g8[], int lenBol, int lenGr)
 	break;
 
 }
+
+
 }
 	
 return;
