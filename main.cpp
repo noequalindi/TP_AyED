@@ -30,9 +30,11 @@ int main() {
     
     // int vecRepetidos[8];
     int lenGr = 0;
-    int lenBol=0;
+    int lenBol = 0;
     
+    // ***********************
     // Ejercicio 1
+    // ***********************
     // Se crea el archivo
     FILE *regEquipos = fopen("Equipos.dat", "rb");
     
@@ -46,44 +48,49 @@ int main() {
     
     // Se posiciona al principio de todo
     rewind(regEquipos);
-    // lee y muestra el contenido del archivo
-    // y carga los bolilleros
+    // ***********************
     // Ejercicio 2
+    // ***********************
+    // y carga los bolilleros
+    cargarBolilleros(regEquipos, vecEquipos, bol1, bol2, bol3, bol4);
+    // lee y muestra el contenido del archivo
 //    for(int i=1; i<5; i++)
 //    {
-//        cout << "_______________ " << endl;
+//        cout << "----------------" << endl;
 //        cout << "****** BOLILLERO " << i << " ****** "<< endl;
-//        cout << "_______________ " << endl;
+//        cout << "----------------" << endl;
 //
 //        mostrar(regEquipos, i);
 //        rewind(regEquipos);
 //    }
-
-    cargarBolilleros(regEquipos, vecEquipos, bol1, bol2, bol3, bol4);
-//    cout << "Bolillero 1 "<< endl;
-//    for (int j=0; j < 8; j++) {
-//        cout << "_______________ " << endl;
-//        cout << bol1[j].nombre << endl;
-//        cout << bol1[j].federacion << endl;
-//    }
-//    cout << "Bolillero 2"<< endl;
-//    for (int j=0; j < 8; j++) {
-//        cout << "_______________ " << endl;
-//        cout << bol2[j].nombre << endl;
-//        cout << bol2[j].federacion << endl;
-//    }
-//    cout << "Bolillero 3 "<< endl;
-//    for (int j=0; j < 8; j++) {
-//        cout << "_______________ " << endl;
-//        cout << bol3[j].nombre << endl;
-//        cout << bol3[j].federacion << endl;
-//    }
-//    cout << "Bolillero 4 "<< endl;
-//    for (int j=0; j < 8; j++) {
-//        cout << "_______________ " << endl;
-//        cout << bol4[j].nombre << endl;
-//        cout << bol4[j].federacion << endl;
-//    }
+    cout << "-----------------------" << endl;
+    cout << "----- Bolillero 1 -----" << endl;
+    cout << "-----------------------" << endl;
+    for (int j=0; j < 8; j++) {
+        cout << bol1[j].nombre << " ";
+        cout << "(" << bol1[j].federacion << ")" << endl;
+    }
+    cout << "-----------------------" << endl;
+    cout << "----- Bolillero 2 -----" << endl;
+    cout << "-----------------------" << endl;
+    for (int j=0; j < 8; j++) {
+        cout << bol2[j].nombre << " ";
+        cout << "(" << bol2[j].federacion << ")" << endl;
+    }
+    cout << "-----------------------" << endl;
+    cout << "----- Bolillero 3 -----" << endl;
+    cout << "-----------------------" << endl;
+    for (int j=0; j < 8; j++) {
+        cout << bol3[j].nombre << " ";
+        cout << "(" << bol3[j].federacion << ")" << endl;
+    }
+    cout << "-----------------------" << endl;
+    cout << "----- Bolillero 4 -----" << endl;
+    cout << "-----------------------" << endl;
+    for (int j=0; j < 8; j++) {
+        cout << bol4[j].nombre << " ";
+        cout << "(" << bol4[j].federacion << ")" << endl;
+    }
 
     fclose(regEquipos);
     sortearFaseGrupos(bol1, bol2, bol3, bol4, g1, g2, g3, g4, g5, g6, g7, g8, lenBol, lenGr);

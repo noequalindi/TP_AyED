@@ -6,15 +6,25 @@ using namespace std;
 
 #include "Ejercicio2.hpp"
 
-void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[],Grupo g1[], Grupo g2[], Grupo g3[], Grupo g4[], Grupo g5[], Grupo g6[], Grupo g7[], Grupo g8[], int lenBol, int lenGr)
+void sortearFaseGrupos(Bolillero bol1[], Bolillero bol2[], Bolillero bol3[], Bolillero bol4[], Grupo g1[], Grupo g2[], Grupo g3[], Grupo g4[], Grupo g5[], Grupo g6[], Grupo g7[], Grupo g8[], int lenBol, int lenGr)
 {
+    // escribo primero lo que creo que hay que hacer:
+    // 1. recorrer el primer bolillero
+    // 1.1. asignar Rusia posición [0] al equipo A
+    // 1.2. asignar las siguientes (posiciones [1] a [7] a los grupos subsiguientes)
+    
+    // 2. a partir del segundo bolillero, buscar un grupo (de [0] a [7]) de manera aleatoria
+    // 2.1. una vez ubicado, chequear en ese grupo que no haya otro de la misma conferación o dos de UEFA
+    // 2.1.a. en caso de que sí haya, buscar otro grupo de manera aleatoria
+    // 2.1.b. en caso de que no haya, insertar en ese grupo
     
     int pos, i=0, j=1;
     
-    srand( time( NULL ) );
+    // srand(time(NULL));
     // sorteo del bolillero 1, solo se saca rusia y se inserta en el grupo A y el resto 7 equipos en el resto de los grupos
-    cout << "************** SORTEO **************"<<endl;
-    if ( i == 0)
+    //cout << "************** SORTEO **************"<<endl;
+    
+    if (i == 0)
     {
         
         g1[i].numEq = bol1[i].numEq;
@@ -222,7 +232,6 @@ void cargarBolilleros (FILE *regEquipos, Equipos vecEquipos[], Bolillero bol1[],
                 strcpy(bol1[i].nombre, vecEquipos[i].nombre);
                 strcpy(bol1[i].federacion, vecEquipos[i].federacion);
                 i++;
-                
             }
         }
         
@@ -267,7 +276,6 @@ void cargarBolilleros (FILE *regEquipos, Equipos vecEquipos[], Bolillero bol1[],
         }
         
         fread(&vecEquipos[32], sizeof(Equipos), 1, regEquipos);
-        
     }
     return;
 }

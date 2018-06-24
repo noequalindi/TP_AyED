@@ -9,7 +9,6 @@ using namespace std;
 void cargarVectorEquipos(Equipos vecEquipos[])
 {
 	// ************ BOLILLERO 1 ***************
-
 	vecEquipos[0].numEq = 1;
 	vecEquipos[0].numBol = 1;
 	strcpy(vecEquipos[0].nombre, "Rusia");
@@ -23,7 +22,7 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	vecEquipos[2].numEq = 3;
 	vecEquipos[2].numBol = 1;
 	strcpy(vecEquipos[2].nombre, "Brasil");
-	strcpy(vecEquipos[2].federacion, "Comebol");
+	strcpy(vecEquipos[2].federacion, "CONMEBOL");
 
 	vecEquipos[3].numEq = 4;
 	vecEquipos[3].numBol = 1;
@@ -33,7 +32,7 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	vecEquipos[4].numEq = 5;
 	vecEquipos[4].numBol = 1;
 	strcpy(vecEquipos[4].nombre, "Argentina");
-	strcpy(vecEquipos[4].federacion, "Comebol");
+	strcpy(vecEquipos[4].federacion, "CONMEBOL");
 
 	vecEquipos[5].numEq = 6;
 	vecEquipos[5].numBol = 1;
@@ -51,9 +50,7 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	strcpy(vecEquipos[7].federacion, "UEFA");
 
 	// ************ BOLILLERO 2 ***************
-
-	
-	vecEquipos[8].numEq = 9;
+    vecEquipos[8].numEq = 9;
 	vecEquipos[8].numBol = 2;
 	strcpy(vecEquipos[8].nombre, "Espana");
 	strcpy(vecEquipos[8].federacion, "UEFA");
@@ -61,7 +58,7 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	vecEquipos[9].numEq = 10;
 	vecEquipos[9].numBol = 2;
 	strcpy(vecEquipos[9].nombre, "Peru");
-	strcpy(vecEquipos[9].federacion, "Comebol");
+	strcpy(vecEquipos[9].federacion, "CONMEBOL");
 	
 	vecEquipos[10].numEq = 11;
 	vecEquipos[10].numBol = 2;
@@ -86,7 +83,7 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	vecEquipos[14].numEq = 15;
 	vecEquipos[14].numBol = 2;
 	strcpy(vecEquipos[14].nombre, "Uruguay");
-	strcpy(vecEquipos[14].federacion, "Comebol");
+	strcpy(vecEquipos[14].federacion, "CONMEBOL");
 	
 	vecEquipos[15].numEq = 16;
 	vecEquipos[15].numBol = 2;
@@ -95,8 +92,7 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	
 	
 	// ************ BOLILLERO 3 ***************
-
-	vecEquipos[16].numEq = 17;
+    vecEquipos[16].numEq = 17;
 	vecEquipos[16].numBol = 3;
 	strcpy(vecEquipos[16].nombre, "Dinamarca");
 	strcpy(vecEquipos[16].federacion, "UEFA");
@@ -135,12 +131,9 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	vecEquipos[23].numBol = 3;
 	strcpy(vecEquipos[23].nombre, "Iran");
 	strcpy(vecEquipos[23].federacion, "AFC");
-
 	
 	// ************ BOLILLERO 4 ***************
-
-	
-	vecEquipos[24].numEq = 25;
+    vecEquipos[24].numEq = 25;
 	vecEquipos[24].numBol = 4;
 	strcpy(vecEquipos[24].nombre, "Serbia");
 	strcpy(vecEquipos[24].federacion, "AFC");
@@ -181,13 +174,12 @@ void cargarVectorEquipos(Equipos vecEquipos[])
 	strcpy(vecEquipos[31].federacion, "CAF");
 	
 	return;
-	
 }
 
 void cargarArchivo(Equipos vecEquipos[], int n)
 {
 	FILE *regEquipos = fopen ("Equipos.dat", "wb+");
-	cout << "*** SE CARGAN LOS EQUIPOS EN EL ARCHIVO... *** " <<endl;
+	cout << "*** SE CARGAN LOS EQUIPOS EN EL ARCHIVO *** " <<endl;
 	n = 32;
 	// ESCRIBE EL ARCHIVO CON EL VECTOR 
 	for (int i=0; i < n; i++)
@@ -233,7 +225,6 @@ void mostrar(FILE *regEquipos, int numBol)
 		
         }
 		fread(&lineaEquipo, sizeof(Equipos), 1, regEquipos);
-
     }
 
 
