@@ -3,10 +3,8 @@
 
 #include "structs.hpp"
 
-//prototipos de funcion
-void cargarVectorEquipos(Equipos vec[]);
-void cargarArchivo(Equipos vec[], int n);
-void mostrar(FILE *f, int numBol);
-void insertar(Grupo arr[], int &len, Bolillero bol[], int pos);
+void cargarBolilleros(Bolilla bol1[], Bolilla bol2[], Bolilla bol3[], Bolilla bol4[]);
+void consolidarEquiposEnArchivo(Bolilla bol1[], Bolilla bol2[], Bolilla bol3[], Bolilla bol4[], int lenBol);
+void mostrarBolilleros();
 
 #endif // Ejercicio1
