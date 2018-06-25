@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <ctime>
 #include <cstdlib>
 using namespace std;
@@ -8,6 +8,7 @@ using namespace std;
 #include "Ejercicio2.hpp"
 
 int main() {
+	
     int lenBol = 8;
     Bolilla bolillero1[lenBol];
     Bolilla bolillero2[lenBol];

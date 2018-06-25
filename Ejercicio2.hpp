@@ -6,7 +6,7 @@
 
 void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolillero3[], Bolilla bolillero4[], int lenBol);
 void asignarLetras(Grupo grupos[]);
-bool validacion(Bolilla bolilla, Grupo &grupo);
-void insertarUltimoEnGrupo(Bolilla bolilla, Grupo &grupo);
+bool validacion(Bolilla bolilla, Grupo grupo);
+void insertarUltimoEnGrupo(Bolilla bolilla, Grupo grupo);
 
 #endif /* Ejercicio2_hpp */

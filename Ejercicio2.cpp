@@ -20,7 +20,8 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
     // asigno Rusia de una
     grupos[0].bolilla[0] = bolillero1[0];
     grupos[0].asignados = grupos[0].asignados + 1;
-    
+   
+    srand(time(NULL));
     // primer bolillero
     cout << "procesando primer bolillero" << endl;
     for(int i = 1; i < lenBol; i++) {
@@ -93,7 +94,7 @@ void asignarLetras(Grupo grupos[]) {
     }
 }
 
-bool validacion(Bolilla bolilla, Grupo &grupo) {
+bool validacion(Bolilla bolilla, Grupo grupo) {
     bool uefaFlag = false;
     
     if(grupo.asignados >= 4) {
@@ -122,10 +123,10 @@ bool validacion(Bolilla bolilla, Grupo &grupo) {
     return true;
 }
 
-void insertarUltimoEnGrupo(Bolilla bolilla, Grupo &grupo) {
-    grupo.bolilla[grupo.asignados + 1] = bolilla;
-    grupo.asignados = grupo.asignados + 1;
+void insertarUltimoEnGrupo(Bolilla bolilla, Grupo grupo) {
+   // grupo.bolilla[grupo.asignados + 1] = bolilla;
+   // grupo.asignados = grupo.asignados + 1;
     
     // control para ir viendo
-    cout << "Asignado el " << grupo.asignados << " equipo: " << bolilla.equipo.nombre << ", al grupo: " << grupo.letra << endl;
+    cout << "Asignado el equipo: " << bolilla.equipo.nombre << ", al grupo: " << grupo.letra << endl;
 }
