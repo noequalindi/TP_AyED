@@ -8,6 +8,10 @@ using namespace std;
 #include "Ejercicio2.hpp"
 
 void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolillero3[], Bolilla bolillero4[], int lenBol) {
+    
+    // seed para el random
+//    srand (time(NULL));
+
     // Cada grupo es una letra + los asignados + un array de bolillas
     Grupo grupos[8];
     
@@ -15,67 +19,79 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
     asignarLetras(grupos);
     // uso un auxiliar para el random
     int aleatorioAux = 0;
-    // voy guardando del bolillero los que todavía no asigné
     
     // asigno Rusia de una
     grupos[0].bolilla[0] = bolillero1[0];
-    grupos[0].asignados = grupos[0].asignados + 1;
+    grupos[0].asignados += 1;
     
     // primer bolillero
     cout << "procesando primer bolillero" << endl;
     for(int i = 1; i < lenBol; i++) {
         aleatorioAux = rand() % lenBol;
+        cout << i << ") buscando equipo para: " << bolillero1[i].equipo.nombre << " (" << bolillero1[i].equipo.federacion << ") -> ";
         
-        // la validación debería ver si el grupo está completo
-        // y si hay 2 UEFA o 1 de cualquier otra federación
         while (!validacion(bolillero1[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
-        insertarUltimoEnGrupo(bolillero1[i], grupos[aleatorioAux]);
+        cout << "encontrado grupo: " << grupos[aleatorioAux].letra;
+        cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
+        grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero1[i];
+        grupos[aleatorioAux].asignados += 1;
     }
     
     cout << "procesando segundo bolillero" << endl;
     // segundo bolillero
     for(int i = 0; i < lenBol; i++) {
         aleatorioAux = rand() % lenBol;
+        cout << i << ") buscando equipo para: " << bolillero2[i].equipo.nombre << " (" << bolillero2[i].equipo.federacion << ") -> ";
         
-        // la validación debería ver si el grupo está completo
-        // y si hay 2 UEFA o 1 de cualquier otra federación
         while (!validacion(bolillero2[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
-        insertarUltimoEnGrupo(bolillero2[i], grupos[aleatorioAux]);
+        cout << "encontrado grupo: " << grupos[aleatorioAux].letra;
+        cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
+        
+        grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero2[i];
+        grupos[aleatorioAux].asignados += 1;
     }
     
     cout << "procesando tercer bolillero" << endl;
     // tercer bolillero
     for(int i = 0; i < lenBol; i++) {
         aleatorioAux = rand() % lenBol;
+        cout << i << ") buscando equipo para: " << bolillero3[i].equipo.nombre << " (" << bolillero3[i].equipo.federacion << ") -> ";
         
-        // la validación debería ver si el grupo está completo
-        // y si hay 2 UEFA o 1 de cualquier otra federación
         while (!validacion(bolillero3[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
-        insertarUltimoEnGrupo(bolillero3[i], grupos[aleatorioAux]);
+        cout << "encontrado grupo: " << grupos[aleatorioAux].letra;
+        cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
+        
+        grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero3[i];
+        grupos[aleatorioAux].asignados += 1;
     }
     
     cout << "procesando cuarto bolillero" << endl;
     // cuarto bolillero
     for(int i = 0; i < lenBol; i++) {
         aleatorioAux = rand() % lenBol;
+        cout << i << ") buscando equipo para: " << bolillero4[i].equipo.nombre << " (" << bolillero4[i].equipo.federacion << ") -> ";
         
-        // la validación debería ver si el grupo está completo
-        // y si hay 2 UEFA o 1 de cualquier otra federación
         while (!validacion(bolillero4[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
-        insertarUltimoEnGrupo(bolillero4[i], grupos[aleatorioAux]);
+        cout << "encontrado grupo: " << grupos[aleatorioAux].letra;
+        cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
+        
+        grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero4[i];
+        grupos[aleatorioAux].asignados += 1;
     }
+    
+    mostrarGrupos(grupos);
 }
 
 void asignarLetras(Grupo grupos[]) {
@@ -93,7 +109,7 @@ void asignarLetras(Grupo grupos[]) {
     }
 }
 
-bool validacion(Bolilla bolilla, Grupo &grupo) {
+bool validacion(Bolilla bolilla, Grupo grupo) {
     bool uefaFlag = false;
     
     if(grupo.asignados >= 4) {
@@ -104,7 +120,7 @@ bool validacion(Bolilla bolilla, Grupo &grupo) {
         
         // si es UEFA
         if (strncmp(bolilla.equipo.federacion, "UEFA", 3) == 0) {
-            if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3)) {
+            if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3) == 0) {
                 // si es UEFA y ya había encontrado otro en el grupo (bandera)
                 if (uefaFlag) {
                     return false;
@@ -122,10 +138,12 @@ bool validacion(Bolilla bolilla, Grupo &grupo) {
     return true;
 }
 
-void insertarUltimoEnGrupo(Bolilla bolilla, Grupo &grupo) {
-    grupo.bolilla[grupo.asignados + 1] = bolilla;
-    grupo.asignados = grupo.asignados + 1;
-    
-    // control para ir viendo
-    cout << "Asignado el " << grupo.asignados << " equipo: " << bolilla.equipo.nombre << ", al grupo: " << grupo.letra << endl;
+void mostrarGrupos(Grupo grupos[])
+{
+    for (int i = 0; i < 8; i++) {
+        cout << "GRUPO " << grupos[i].letra << endl;
+        for (int j = 0; j < 4; j++) {
+                cout << "EQUIPO " << grupos[i].bolilla[j].equipo.nombre << endl;
+        }
+    }
 }
