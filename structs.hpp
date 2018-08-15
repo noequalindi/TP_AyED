@@ -18,4 +18,17 @@ struct Grupo
     Bolilla bolilla[4];
 };
 
+struct GenerarArchivo
+{
+	char letra[2];
+	Equipo equipo;
+	int numGrupo;
+};
+
+struct Consolidado
+{
+	char letra[2];
+	Equipo equipo;
+	int numGrupo;
+};
 #endif /* structs_hpp */

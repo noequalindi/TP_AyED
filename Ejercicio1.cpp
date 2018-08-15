@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <ctime>
 #include <cstdlib>
 using namespace std;
@@ -11,7 +11,7 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     // ************ BOLILLERO 1 ***************
     
     strcpy(bolillero1[0].equipo.nombre, "Rusia");
-    strcpy(bolillero1[0].equipo.federacion, "AFC");
+    strcpy(bolillero1[0].equipo.federacion, "UEFA");
     
     strcpy(bolillero1[1].equipo.nombre, "Alemania");
     strcpy(bolillero1[1].equipo.federacion, "UEFA");
