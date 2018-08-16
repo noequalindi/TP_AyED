@@ -10,7 +10,7 @@ using namespace std;
 #include "Ejercicio3.hpp"
 
 
-void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Consolidado gruposConsolidado)
+void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Consolidado gruposConsolidado, int &lenGrupos)
 {
 
 	FILE * grupoA = fopen("GrupoA.dat", "rb");
@@ -22,9 +22,8 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 	FILE * grupoG = fopen("GrupoG.dat", "rb");
 	FILE * grupoH = fopen("GrupoH.dat", "rb");
 	
-    int lenGrupos=0;
     
-    fread(&regGrupo, sizeof(Grupo), 1, grupoA);	
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoA);	
 	while (!feof(grupoA))
 	{
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
@@ -45,7 +44,9 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoB);
 	}
 	
-	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoB);	
+	//REPETIDO
+	
+/*	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoB);	
 	while (!feof(grupoB))
 	{
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
@@ -53,7 +54,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoB);
-	}
+	}*/ 
 	
 	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoC);	
 	while (!feof(grupoC))
@@ -75,7 +76,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoD);
 	}
 	
-		fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoE);	
+	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoE);	
 	while (!feof(grupoE))
 	{
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
@@ -85,7 +86,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoE);
 	}
 	
-		fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoF);	
+	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoF);	
 	while (!feof(grupoF))
 	{
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
@@ -94,6 +95,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoF);
 	}
+	
 	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoG);	
 	while (!feof(grupoG))
 	{
@@ -127,7 +129,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
     return;
 }
 
-void mostrarVectorGruposConsolidado(Consolidado vecGrupos[], int &lenConsolidado)
+void mostrarVectorGruposConsolidado(Consolidado vecGrupos[], int lenConsolidado)
 {
 
 	for (int i = 0; i< lenConsolidado; i++)

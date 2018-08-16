@@ -15,6 +15,7 @@ struct Grupo
 {
     char letra;
     int asignados;
+    int numGrupo;
     Bolilla bolilla[4];
 };
 

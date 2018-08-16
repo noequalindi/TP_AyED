@@ -38,7 +38,7 @@ int main() {
     
     
     //*************EJERCICIO 3 **************//
-    cargarGruposEnVector(vecGrupos, regGrupo, gruposConsolidado);
+    cargarGruposEnVector(vecGrupos, regGrupo, gruposConsolidado, lenConsolidado);
 	mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
 
 	system("PAUSE");

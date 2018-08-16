@@ -230,41 +230,42 @@ void generarArchivos(GenerarArchivo regGrupo, Grupo grupos[])
         		case 'A':
         			strcpy(regGrupo.letra, "A");
         			regGrupo.numGrupo = 1;
-        			fwrite(&regGrupo, sizeof(Grupo), 1, grupoA);
+        			fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoA);
         		break;
         		case 'B':
         			strcpy(regGrupo.letra, "B");
         			regGrupo.numGrupo = 2;
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoB);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoB);
+	        	break;
 	        	case 'C':
 	        		strcpy(regGrupo.letra, "C");
 	        		regGrupo.numGrupo = 3;
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoC);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoC);
 	        	break;
 	        	case 'D':
 	        		regGrupo.numGrupo = 4;
 	        		strcpy(regGrupo.letra, "D");
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoD);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoD);
 	        	break;
 	        	case 'E':
 	        		regGrupo.numGrupo = 5;
 	        		strcpy(regGrupo.letra, "E");
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoE);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoE);
 	        	break;
 	        	case 'F':
 	        		regGrupo.numGrupo = 6;
 	        		strcpy(regGrupo.letra, "F");
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoF);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoF);
 	        	break;
 	        	case 'G':
 	        		regGrupo.numGrupo = 7;
 	        		strcpy(regGrupo.letra, "G");
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoG);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoG);
 	        	break;
 	        	case 'H':
 	        		strcpy(regGrupo.letra, "H");
 	        		regGrupo.numGrupo = 8;
-	        		fwrite(&regGrupo, sizeof(Grupo), 1, grupoH);
+	        		fwrite(&regGrupo, sizeof(GenerarArchivo), 1, grupoH);
 	        	break;
 	        	default: 
 	        		cout << "No hay equipos" << endl;
@@ -312,98 +313,98 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
 	FILE * grupoG = fopen("GrupoG.dat", "rb");
 	FILE * grupoH = fopen("GrupoH.dat", "rb");
     
-    fread(&regGrupo, sizeof(Grupo), 1, grupoA);
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoA);
     
     while (!feof(grupoA))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoA);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoA);
     }
     
     fclose(grupoA);
     
-     fread(&regGrupo, sizeof(Grupo), 1, grupoB);
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoB);
     
     while (!feof(grupoB))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoB);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoB);
     }
     
     fclose(grupoB);
     
-	fread(&regGrupo, sizeof(Grupo), 1, grupoC);
+	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoC);
     
     while (!feof(grupoC))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoC);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoC);
     }
     
     fclose(grupoC);
     
-     fread(&regGrupo, sizeof(Grupo), 1, grupoD);
+     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoD);
     
     while (!feof(grupoD))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoD);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoD);
     }
     
     fclose(grupoD);
     
-     fread(&regGrupo, sizeof(Grupo), 1, grupoE);
+     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoE);
     
     while (!feof(grupoE))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoE);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoE);
     }
     
     fclose(grupoE);
     
-     fread(&regGrupo, sizeof(Grupo), 1, grupoF);
+     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoF);
     
     while (!feof(grupoF))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoF);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoF);
     }
     
     fclose(grupoF);
     
-     fread(&regGrupo, sizeof(Grupo), 1, grupoG);
+     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoG);
     
     while (!feof(grupoG))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoG);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoG);
     }
     
     fclose(grupoG);
     
-     fread(&regGrupo, sizeof(Grupo), 1, grupoH);
+     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoH);
     
     while (!feof(grupoH))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
-        fread(&regGrupo,sizeof(Grupo),1, grupoH);
+        fread(&regGrupo,sizeof(GenerarArchivo),1, grupoH);
     }
     
     fclose(grupoH);
