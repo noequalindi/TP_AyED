@@ -40,6 +40,7 @@ int main() {
     //*************EJERCICIO 3 **************//
     cargarGruposEnVector(vecGrupos, regGrupo, gruposConsolidado, lenConsolidado);
 	mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+	mostrarVectorGruposOrdenado(vecGrupos, lenConsolidado);
 
 	system("PAUSE");
 

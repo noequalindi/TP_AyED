@@ -29,6 +29,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"A");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoA);
 	}
@@ -40,6 +41,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"B");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoB);
 	}
@@ -62,6 +64,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"C");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoC);
 	}
@@ -72,6 +75,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"D");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoD);
 	}
@@ -82,6 +86,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"E");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoE);
 	}
@@ -92,6 +97,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"F");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoF);
 	}
@@ -102,6 +108,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"G");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoG);
 	}
@@ -112,6 +119,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 		gruposConsolidado.numGrupo = regGrupo.numGrupo;
 		strcpy(gruposConsolidado.equipo.nombre, regGrupo.equipo.nombre);
 		strcpy(gruposConsolidado.equipo.federacion, regGrupo.equipo.federacion);
+		strcpy(gruposConsolidado.letra,"H");
 		insertarOrdenado(vecGrupos,lenGrupos,gruposConsolidado);
   		fread(&regGrupo,sizeof(GenerarArchivo),1, grupoH);
 	}
@@ -131,16 +139,93 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 
 void mostrarVectorGruposConsolidado(Consolidado vecGrupos[], int lenConsolidado)
 {
+    
+			
 
-	for (int i = 0; i< lenConsolidado; i++)
-    {
-    	cout << vecGrupos[i].numGrupo << "//" << " Grupo: "<< vecGrupos[i].letra;
-    	cout<< "____________________"<<endl;
-		cout << vecGrupos[i].equipo.nombre << "--> " << vecGrupos[i].equipo.federacion <<endl;
-	}
-	
 	return;
 }
+
+void mostrarVectorGruposOrdenado(Consolidado vecGrupos[], int lenConsolidado)
+{
+Consolidado temp;   
+
+    for ( int i = 0; i < lenConsolidado; i++ ){
+		cout<< "__________________________________________\n"<<endl;
+		cout<< "Mostrando grupos ordenados por numero:\n";
+    	cout<< "__________________________________________\n"<<endl;
+    	cout << vecGrupos[i].numGrupo << "//" << " Grupo: "<< vecGrupos[i].letra << endl;
+		cout << vecGrupos[i].equipo.nombre << "--> " << endl;
+    	cout<< "____________________"<<endl;
+		
+		
+    	
+        for ( int j = i + 1; j < lenConsolidado; j++ ){
+
+            // strcoll() devuelve -1 si el 1º parametro es mayor que el 2º, 0 si el 1º es igual al 2º, o
+
+            //1 si el 1º mayor que el 2º. Lo hace caracter a caracter hasta encontrar una diferencia o un nulo que es cuando retorna uno de los valores mensionados.
+
+            if ( ( strcoll(/*1º*/ vecGrupos[i].equipo.nombre, /*2º*/vecGrupos[j].equipo.nombre) ) > 0 ) {
+
+                //esto va subiendo los nombres a la cabeza de la lista
+                
+              
+			//ordenado por equipo
+                strcpy ( temp.equipo.nombre, vecGrupos[i].equipo.nombre );
+
+                strcpy (vecGrupos[i].equipo.nombre, vecGrupos[j].equipo.nombre );
+
+                strcpy ( vecGrupos[j].equipo.nombre, temp.equipo.nombre );
+
+            }
+            
+            if ( ( strcoll(/*1º*/ vecGrupos[i].equipo.federacion, /*2º*/vecGrupos[j].equipo.federacion) ) > 0 ) {
+
+                //esto va subiendo los nombres a la cabeza de la lista
+        	        
+			//ordenado por federacion
+                strcpy ( temp.equipo.federacion, vecGrupos[i].equipo.federacion );
+
+                strcpy (vecGrupos[i].equipo.federacion, vecGrupos[j].equipo.federacion );
+
+                strcpy ( vecGrupos[j].equipo.federacion, temp.equipo.federacion );
+
+            }
+            
+        cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por Confederacion:\n";
+    	cout<< "____________________________________________________\n"<<endl;
+    	cout << vecGrupos[i].numGrupo << "//" << " Grupo: "<< vecGrupos[i].letra << endl;
+  			 // 	cout<< "____________________"<<endl;
+		cout << vecGrupos[i].equipo.nombre << "--> " << vecGrupos[i].equipo.federacion <<endl;	
+    	
+    	 cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por GRUPO y Confederacion:\n";
+    	cout<< "____________________________________________________\n"<<endl;
+        // por numero de grupo y confederacion
+        cout << vecGrupos[i].numGrupo << "//" << " Grupo: "<< vecGrupos[i].letra << endl;
+		cout << vecGrupos[i].equipo.federacion <<endl;
+    	cout<< "____________________"<<endl;
+    	 cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por GRUPO Confederacion y equipo:\n";
+    	cout<< "____________________________________________________\n"<<endl;
+    	// por numero de grupo, confederacion y equipo
+    	cout << vecGrupos[i].numGrupo << "//" << " Grupo: "<< vecGrupos[i].letra << endl;
+		cout << vecGrupos[i].equipo.federacion << vecGrupos[i].equipo.nombre << "--> " << endl;
+    	cout<< "____________________"<<endl;
+            
+
+        }
+
+    }    
+	
+	return;
+
+}
+
+
+
+
 void insertar(Consolidado vecGrupos[], int &lenGrupos, Consolidado gruposConsolidado, int pos)
 {
 
