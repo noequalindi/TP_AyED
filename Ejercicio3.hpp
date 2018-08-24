@@ -9,6 +9,8 @@ void cargarGruposEnVector(Consolidado vec[], GenerarArchivo regGrupo, Consolidad
 int insertarOrdenado(Consolidado vecGrupos[], int &lenGrupos, Consolidado gruposConsolidado);
 void insertar(Consolidado vecGrupos[], int &lenGrupos, GenerarArchivo regGrupo, int pos);
 void mostrarVectorGruposConsolidado(Consolidado vec[], int len);
-void mostrarVectorGruposOrdenado(Consolidado vec[], int len);
+void ordenaVectorPorFederacion(Consolidado vec[], int len);
+void ordenaVectorPorNombre(Consolidado vec[], int len);
+void ordenaVectorPorGrupo(Consolidado vec[], int len);
 
 #endif /* Ejercicio2_hpp */

@@ -39,8 +39,57 @@ int main() {
     
     //*************EJERCICIO 3 **************//
     cargarGruposEnVector(vecGrupos, regGrupo, gruposConsolidado, lenConsolidado);
-	mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
-	mostrarVectorGruposOrdenado(vecGrupos, lenConsolidado);
+
+// Muestro los 3 primeros ordenes, por grupo, por equipo y por confederacion.
+	
+	ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
+
+        cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por GRUPO:\n";
+    	cout<< "____________________________________________________\n"<<endl;
+
+    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+
+	ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
+
+       	cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por Confederacion:\n";
+    	cout<< "____________________________________________________\n"<<endl;
+
+    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+    
+	ordenaVectorPorNombre(vecGrupos, lenConsolidado);
+
+        cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por NOMBRE:\n";
+    	cout<< "____________________________________________________\n"<<endl;
+
+    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+
+// Ahora uso los ordenes creados para odenar como me piden los otros 2.	
+	
+	ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
+	ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
+	
+        cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por GRUPo y Federacion\n";
+    	cout<< "____________________________________________________\n"<<endl;
+
+    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+    
+	ordenaVectorPorNombre(vecGrupos, lenConsolidado);
+	ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
+	ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
+
+        cout<< "____________________________________________________\n"<<endl;
+		cout << "Mostrando los equipos ordenados por GRUPo y Federacion y Nombre\n";
+    	cout<< "____________________________________________________\n"<<endl;
+
+    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+
+	
+//	ordenaVectorPorNombre
+	
 
 	system("PAUSE");
 
