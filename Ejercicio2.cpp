@@ -10,7 +10,7 @@ using namespace std;
 void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolillero3[], Bolilla bolillero4[], int lenBol) {
     
     // seed para el random
-//    srand (time(NULL));
+    srand (time(NULL));
 
     // Cada grupo es una letra + los asignados + un array de bolillas
     Grupo grupos[8];
@@ -20,6 +20,9 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
     // uso un auxiliar para el random
     int aleatorioAux = 0;
     
+    // mantengo un nivel para que se llenen parejos
+    int nivel = 0;
+    
     // asigno Rusia de una
     grupos[0].bolilla[0] = bolillero1[0];
     grupos[0].asignados += 1;
@@ -27,18 +30,20 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
     // primer bolillero
     cout << "procesando primer bolillero" << endl;
     for(int i = 1; i < lenBol; i++) {
+        // grupos puede ser cualquiera entre 0 y 7
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero1[i].equipo.nombre << " (" << bolillero1[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero1[i], grupos[aleatorioAux])) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero1[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
         cout << "encontrado grupo: " << grupos[aleatorioAux].letra;
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero1[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
+    nivel++;
     
     cout << "procesando segundo bolillero" << endl;
     // segundo bolillero
@@ -46,7 +51,7 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero2[i].equipo.nombre << " (" << bolillero2[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero2[i], grupos[aleatorioAux])) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero2[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
@@ -54,8 +59,9 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero2[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
+    nivel++;
     
     cout << "procesando tercer bolillero" << endl;
     // tercer bolillero
@@ -63,7 +69,7 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero3[i].equipo.nombre << " (" << bolillero3[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero3[i], grupos[aleatorioAux])) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero3[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
@@ -71,8 +77,9 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero3[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
+    nivel++;
     
     cout << "procesando cuarto bolillero" << endl;
     // cuarto bolillero
@@ -80,7 +87,7 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero4[i].equipo.nombre << " (" << bolillero4[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero4[i], grupos[aleatorioAux])) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero4[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
@@ -88,7 +95,7 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero4[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
     
     mostrarGrupos(grupos);

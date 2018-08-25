@@ -11,19 +11,19 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     // ************ BOLILLERO 1 ***************
     
     strcpy(bolillero1[0].equipo.nombre, "Rusia");
-    strcpy(bolillero1[0].equipo.federacion, "AFC");
+    strcpy(bolillero1[0].equipo.federacion, "UEFA");
     
     strcpy(bolillero1[1].equipo.nombre, "Alemania");
     strcpy(bolillero1[1].equipo.federacion, "UEFA");
     
     strcpy(bolillero1[2].equipo.nombre, "Brasil");
-    strcpy(bolillero1[2].equipo.federacion, "Conmebol");
+    strcpy(bolillero1[2].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero1[3].equipo.nombre, "Portugal");
     strcpy(bolillero1[3].equipo.federacion, "UEFA");
     
     strcpy(bolillero1[4].equipo.nombre, "Argentina");
-    strcpy(bolillero1[4].equipo.federacion, "Conmebol");
+    strcpy(bolillero1[4].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero1[5].equipo.nombre, "Belgica");
     strcpy(bolillero1[5].equipo.federacion, "UEFA");
@@ -40,7 +40,7 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero2[0].equipo.federacion, "UEFA");
     
     strcpy(bolillero2[1].equipo.nombre, "Peru");
-    strcpy(bolillero2[1].equipo.federacion, "Conmebol");
+    strcpy(bolillero2[1].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero2[2].equipo.nombre, "Suiza");
     strcpy(bolillero2[2].equipo.federacion, "UEFA");
@@ -49,13 +49,13 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero2[3].equipo.federacion, "UEFA");
     
     strcpy(bolillero2[4].equipo.nombre, "Colombia");
-    strcpy(bolillero2[4].equipo.federacion, "Conmebol");
+    strcpy(bolillero2[4].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero2[5].equipo.nombre, "Mexico");
     strcpy(bolillero2[5].equipo.federacion, "Concacaf");
     
     strcpy(bolillero2[6].equipo.nombre, "Uruguay");
-    strcpy(bolillero2[6].equipo.federacion, "Conmebol");
+    strcpy(bolillero2[6].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero2[7].equipo.nombre, "Croacia");
     strcpy(bolillero2[7].equipo.federacion, "UEFA");
