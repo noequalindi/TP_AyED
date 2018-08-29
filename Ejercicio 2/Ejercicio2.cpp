@@ -5,42 +5,49 @@
 #include <cstdlib>
 using namespace std;
 
-#include "Ejercicio1.hpp"
 #include "Ejercicio2.hpp"
-#include "Ejercicio3.hpp"
+#include "../Ejercicio 1/Ejercicio1.hpp"
 
 void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolillero3[], Bolilla bolillero4[], int lenBol) {
     
+    // seed para el random
+    srand (time(NULL));
+
     // Cada grupo es una letra + los asignados + un array de bolillas
     Grupo grupos[8];
-    GenerarArchivo regGrupo;
     
     // A, B, C, D, E, F, G, H
     asignarLetras(grupos);
     
     // uso un auxiliar para el random
     int aleatorioAux = 0;
-    srand (time(NULL));
+    
+    // mantengo un nivel para que se llenen parejos
+    int nivel = 0;
     
     // asigno Rusia de una
     grupos[0].bolilla[0] = bolillero1[0];
     grupos[0].asignados += 1;
-    
+    cout << "___________________________________________________" << endl;
+    cout << " ***** PROCESAMIENTO DE CADA BOLILLERO *****" << endl;
+    cout << "_________________________________________________" << endl;
     // primer bolillero
     cout << "procesando primer bolillero" << endl;
     for(int i = 1; i < lenBol; i++) {
+        // grupos puede ser cualquiera entre 0 y 7
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero1[i].equipo.nombre << " (" << bolillero1[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero1[i], grupos[aleatorioAux], grupos)) {
-            aleatorioAux = (rand() % lenBol) + 1;
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero1[i], grupos[aleatorioAux])) {
+            aleatorioAux = rand() % lenBol;
         }
         
         cout << "encontrado grupo: " << grupos[aleatorioAux].letra;
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero1[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
+    nivel++;
     
     cout << "procesando segundo bolillero" << endl;
     // segundo bolillero
@@ -48,7 +55,7 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero2[i].equipo.nombre << " (" << bolillero2[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero2[i], grupos[aleatorioAux], grupos)) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero2[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
@@ -56,8 +63,9 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero2[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
+    nivel++;
     
     cout << "procesando tercer bolillero" << endl;
     // tercer bolillero
@@ -65,7 +73,7 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero3[i].equipo.nombre << " (" << bolillero3[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero3[i], grupos[aleatorioAux], grupos)) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero3[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
@@ -73,23 +81,17 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero3[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
+    nivel++;
     
     cout << "procesando cuarto bolillero" << endl;
     // cuarto bolillero
-   for(int i = 0; i < lenBol; i++) {
-    	
-    	cout << " ";
-    	cout << "ACA ESTA EL FIXTURE" << endl;
-    	mostrarGrupos(grupos);
-    	cout << " ";
-    	
-    	
+    for(int i = 0; i < lenBol; i++) {
         aleatorioAux = rand() % lenBol;
         cout << i << ") buscando equipo para: " << bolillero4[i].equipo.nombre << " (" << bolillero4[i].equipo.federacion << ") -> ";
         
-        while (!validacion(bolillero4[i], grupos[aleatorioAux], grupos)) {
+        while (grupos[aleatorioAux].asignados > nivel && !validacion(bolillero4[i], grupos[aleatorioAux])) {
             aleatorioAux = rand() % lenBol;
         }
         
@@ -97,14 +99,14 @@ void realizarSorteo(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla boliller
         cout << " (queda con " << grupos[aleatorioAux].asignados + 1 << " integrantes)" << endl;
         
         grupos[aleatorioAux].bolilla[grupos[aleatorioAux].asignados] = bolillero4[i];
-        grupos[aleatorioAux].asignados += 1;
+        grupos[aleatorioAux].asignados++;
     }
-    
+    GenerarArchivo regGrupo;
     mostrarGrupos(grupos);
-  	generarArchivos(regGrupo, grupos);
+    // Se generan los archivos en base a los grupos sorteados.
+    generarArchivos(regGrupo, grupos);
+    // Se muestran los archivos generados.
     mostrarGruposConformados(regGrupo);
-    
-	return;
 }
 
 void asignarLetras(Grupo grupos[]) {
@@ -122,84 +124,50 @@ void asignarLetras(Grupo grupos[]) {
     }
 }
 
-bool validacion(Bolilla bolilla, Grupo grupo, Grupo grupos[]) {
+bool validacion(Bolilla bolilla, Grupo grupo) {
     bool uefaFlag = false;
     
     if(grupo.asignados >= 4) {
         return false;
     }
     
-    // -- Si el grupo que acabo de agarrar ya tiene 3 participantes
-    if(grupo.asignados == 3) 
-	{    
-    	// -- Recorro los ocho grupos
-	    for (int i = 0; i < 8; i++) 
-		{
-			// -- Y si algun grupo todavia tiene uno retorno false, para qeu este grupo no se complete mientras a otros grupos le faltan 3 integrantes
-	    	if(grupos[i].asignados == 1)
-	    	{
-	    		return false;
-			}
-	    } 
-	}
-	
-	if(grupo.asignados == 3) 
-	{    
-    	// -- Recorro los ocho grupos
-	    for (int i = 0; i < 8; i++) 
-		{
-			// -- Y si algun grupo todavia tiene uno retorno false, para que este grupo no se complete mientras a otros grupos le faltan 2 integrantes
-	    	if(grupos[i].asignados == 2)
-	    	{
-	    		return false;
-			}
-	    } 
-	}
-    
-    int j = grupo.asignados;
-    int aux=0;
-    for (int i = 0; i < grupo.asignados; i++)
-	 {
-    	
-       cout << "ACA ENTRA AL FOR grupo letra: " << grupo.letra <<  "--  ContadorAux: " << aux <<endl;
+    for (int i = 0; i < grupo.asignados; i++) {
         
-		// si es UEFA
+        // si es UEFA
         if (strncmp(bolilla.equipo.federacion, "UEFA", 3) == 0) {
             if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3) == 0) {
-                // si es UEFA y ya habÃ­a encontrado otro en el grupo (bandera)
-                if (uefaFlag)
-				{
-					cout << "ACA ENTRA SALE DEL FOR grupo letra: " << grupo.letra <<  "--  POR TENER DOS EUROPEOS" << endl;
+                // si es UEFA y ya había encontrado otro en el grupo (bandera)
+                if (uefaFlag) {
                     return false;
-                // si no, levanto la bandera porque encontrÃ© uno de UEFA
-                } 
-				else
-				{
+                // si no, levanto la bandera porque encontré uno de UEFA
+                } else {
                     uefaFlag = true;
                 }
             }
-        // es cualquier otra federaciÃ³n, comparo que no haya otro de la misma federaciÃ³n
-        } 
-		else
-		{
-			if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3) == 0) 
-			{
-				cout << "ACA ENTRA SALE DEL FOR grupo letra: " << grupo.letra <<  "--  POR TENER OTRO DE LA MISMA FEDERACION" << endl;
-            	return false;
-			}
-			aux = aux + 1;
-			cout << " ";
-    		cout << "valida true Asignados en este grupo: "<< grupo.asignados << "  letra: " << grupo.letra <<  "--  ContadorAux: " << aux <<endl;
-			if(j==aux)
-			{
-				return true;
-			}
+        // es cualquier otra federación, comparo que no haya otro de la misma federación
+        } else if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3) == 0) {
+            return false;
         }
-        
     }
     
     return true;
 }
+
+void mostrarGrupos(Grupo grupos[])
+{
+	cout << "_______________________________________________" << endl;
+	cout << " ****** RESULTADO DEL SORTEO: ****** " << endl;
+	cout << "_______________________________________________" << endl;
+    for (int i = 0; i < 8; i++) {
+        cout << " ****** GRUPO " << grupos[i].letra << " ******"<< endl;
+        for (int j = 0; j < 4; j++) {
+                cout << "EQUIPO: " << grupos[i].bolilla[j].equipo.nombre << endl;
+        }
+    cout << "_______________________________________________" << endl;
+    }
+}
+
+
 void generarArchivos(GenerarArchivo regGrupo, Grupo grupos[])
 {
     
@@ -218,7 +186,6 @@ void generarArchivos(GenerarArchivo regGrupo, Grupo grupos[])
     
     for (int i= 0; i < cantGrupos; i++)
     {
-	
     	for (int j = 0; j < lenGrupo; j++) 
 		{
 			
@@ -292,15 +259,6 @@ return;
     
     
 }
-void mostrarGrupos(Grupo grupos[])
-{
-    for (int i = 0; i < 8; i++) {
-        cout << "GRUPO " << grupos[i].letra << endl;
-        for (int j = 0; j < 4; j++) {
-                cout << "EQUIPO " << grupos[i].bolilla[j].equipo.nombre << endl;
-        }
-    }
-}
 
 void mostrarGruposConformados(GenerarArchivo regGrupo)
 {
@@ -315,6 +273,10 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     
     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoA);
     
+    cout << "_______________________________________________" << endl;
+    cout << " **** GENERACION DE ARCHIVOS POR GRUPO **** " << endl;
+	cout << "_______________________________________________" << endl;
+	
     while (!feof(grupoA))
     {
         cout << "Grupo " << regGrupo.letra << " -> ";
@@ -324,19 +286,19 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoA);
-    
+    cout << "_______________________________________________" << endl;
     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoB);
     
     while (!feof(grupoB))
     {
-        cout << "Grupo " << regGrupo.letra << " -> ";
+      	cout << "Grupo " << regGrupo.letra << " -> ";
         cout << regGrupo.equipo.nombre;
         cout << " (" << regGrupo.equipo.federacion << ")" << endl;
         fread(&regGrupo,sizeof(GenerarArchivo),1, grupoB);
     }
     
     fclose(grupoB);
-    
+    cout << "_______________________________________________" << endl;
 	fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoC);
     
     while (!feof(grupoC))
@@ -348,8 +310,8 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoC);
-    
-     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoD);
+    cout << "_______________________________________________" << endl;
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoD);
     
     while (!feof(grupoD))
     {
@@ -360,8 +322,8 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoD);
-    
-     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoE);
+    cout << "_______________________________________________" << endl;
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoE);
     
     while (!feof(grupoE))
     {
@@ -372,8 +334,8 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoE);
-    
-     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoF);
+    cout << "_______________________________________________" << endl;
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoF);
     
     while (!feof(grupoF))
     {
@@ -384,8 +346,8 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoF);
-    
-     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoG);
+    cout << "_______________________________________________" << endl;
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoG);
     
     while (!feof(grupoG))
     {
@@ -396,8 +358,8 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoG);
-    
-     fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoH);
+    cout << "_______________________________________________" << endl;
+    fread(&regGrupo, sizeof(GenerarArchivo), 1, grupoH);
     
     while (!feof(grupoH))
     {
@@ -408,6 +370,8 @@ void mostrarGruposConformados(GenerarArchivo regGrupo)
     }
     
     fclose(grupoH);
-    
+    cout << "_______________________________________________________________" << endl;
+    cout << "_______________________________________________________________" << endl;
+    cout << "_______________________________________________________________" << endl;
     return;
 }

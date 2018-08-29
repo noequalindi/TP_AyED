@@ -17,13 +17,13 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero1[1].equipo.federacion, "UEFA");
     
     strcpy(bolillero1[2].equipo.nombre, "Brasil");
-    strcpy(bolillero1[2].equipo.federacion, "Conmebol");
+    strcpy(bolillero1[2].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero1[3].equipo.nombre, "Portugal");
     strcpy(bolillero1[3].equipo.federacion, "UEFA");
     
     strcpy(bolillero1[4].equipo.nombre, "Argentina");
-    strcpy(bolillero1[4].equipo.federacion, "Conmebol");
+    strcpy(bolillero1[4].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero1[5].equipo.nombre, "Belgica");
     strcpy(bolillero1[5].equipo.federacion, "UEFA");
@@ -40,7 +40,7 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero2[0].equipo.federacion, "UEFA");
     
     strcpy(bolillero2[1].equipo.nombre, "Peru");
-    strcpy(bolillero2[1].equipo.federacion, "Conmebol");
+    strcpy(bolillero2[1].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero2[2].equipo.nombre, "Suiza");
     strcpy(bolillero2[2].equipo.federacion, "UEFA");
@@ -49,13 +49,13 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero2[3].equipo.federacion, "UEFA");
     
     strcpy(bolillero2[4].equipo.nombre, "Colombia");
-    strcpy(bolillero2[4].equipo.federacion, "Conmebol");
+    strcpy(bolillero2[4].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero2[5].equipo.nombre, "Mexico");
-    strcpy(bolillero2[5].equipo.federacion, "Concacaf");
+    strcpy(bolillero2[5].equipo.federacion, "CONCACAF");
     
     strcpy(bolillero2[6].equipo.nombre, "Uruguay");
-    strcpy(bolillero2[6].equipo.federacion, "Conmebol");
+    strcpy(bolillero2[6].equipo.federacion, "CONMEBOL");
     
     strcpy(bolillero2[7].equipo.nombre, "Croacia");
     strcpy(bolillero2[7].equipo.federacion, "UEFA");
@@ -70,7 +70,7 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero3[1].equipo.federacion, "UEFA");
     
     strcpy(bolillero3[2].equipo.nombre, "Costa Rica");
-    strcpy(bolillero3[2].equipo.federacion, "Concacaf");
+    strcpy(bolillero3[2].equipo.federacion, "CONCACAF");
     
     strcpy(bolillero3[3].equipo.nombre, "Suecia");
     strcpy(bolillero3[3].equipo.federacion, "UEFA");
@@ -106,7 +106,7 @@ void cargarBolilleros(Bolilla bolillero1[], Bolilla bolillero2[], Bolilla bolill
     strcpy(bolillero4[4].equipo.federacion, "CAF");
     
     strcpy(bolillero4[5].equipo.nombre, "Panama");
-    strcpy(bolillero4[5].equipo.federacion, "Concacaf");
+    strcpy(bolillero4[5].equipo.federacion, "CONCACAF");
     
     strcpy(bolillero4[6].equipo.nombre, "Corea del Sur");
     strcpy(bolillero4[6].equipo.federacion, "AFC");
@@ -155,15 +155,20 @@ void mostrarBolilleros()
     FILE * fileBolilleros = fopen("Bolilleros.dat", "rb");
     Bolilla regBolillero;
     fread(&regBolillero, sizeof(Bolilla), 1, fileBolilleros);
-    
+    cout << "_______________________________________________________________" << endl;
+    cout << "******** CONFORMACION DE BOLILLEROS EN EL ARCHIVO ******** " << endl;
+    cout << "_______________________________________________________________" << endl;
     while (!feof(fileBolilleros))
     {
+    	
         cout << "Bolillero " << regBolillero.numBol << " -> ";
         cout << regBolillero.equipo.nombre;
         cout << " (" << regBolillero.equipo.federacion << ")" << endl;
         fread(&regBolillero,sizeof(Bolilla),1,fileBolilleros);
     }
-    
+    cout << "_______________________________________________________________" << endl;
+    cout << "_______________________________________________________________" << endl;
+    cout << "_______________________________________________________________" << endl;
     fclose(fileBolilleros);
     return;
 }

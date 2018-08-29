@@ -4,9 +4,9 @@
 #include <cstdlib>
 using namespace std;
 
-#include "Ejercicio1.hpp"
-#include "Ejercicio2.hpp"
-#include "Ejercicio3.hpp"
+#include "Ejercicio 1/Ejercicio1.hpp"
+#include "Ejercicio 2/Ejercicio2.hpp"
+#include "Ejercicio 3/Ejercicio3.hpp"
 
 int main() {
 	
@@ -37,10 +37,12 @@ int main() {
     realizarSorteo(bolillero1, bolillero2, bolillero3, bolillero4, lenBol);
     
     
-    //*************EJERCICIO 3 **************//
+  	// ****************************************************** //
+    // ******************** EJERCICIO 3 ********************* //
+    // ****************************************************** //
     cargarGruposEnVector(vecGrupos, regGrupo, gruposConsolidado, lenConsolidado);
-	mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
-	mostrarVectorGruposOrdenado(vecGrupos, lenConsolidado);
+	mostrarOrdenamientos(vecGrupos, lenConsolidado);
+
 
 	system("PAUSE");
 
