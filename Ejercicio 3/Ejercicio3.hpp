@@ -14,4 +14,5 @@ void ordenaVectorPorNombre(Consolidado vec[], int len);
 void ordenaVectorPorGrupo(Consolidado vec[], int len);
 void mostrarOrdenamientos(Consolidado vecGrupos[], int lenConsolidado);
 
+
 #endif /* Ejercicio2_hpp */

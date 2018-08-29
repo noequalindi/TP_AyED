@@ -136,15 +136,15 @@ bool validacion(Bolilla bolilla, Grupo grupo) {
         // si es UEFA
         if (strncmp(bolilla.equipo.federacion, "UEFA", 3) == 0) {
             if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3) == 0) {
-                // si es UEFA y ya había encontrado otro en el grupo (bandera)
+                // si es UEFA y ya habï¿½a encontrado otro en el grupo (bandera)
                 if (uefaFlag) {
                     return false;
-                // si no, levanto la bandera porque encontré uno de UEFA
+                // si no, levanto la bandera porque encontrï¿½ uno de UEFA
                 } else {
                     uefaFlag = true;
                 }
             }
-        // es cualquier otra federación, comparo que no haya otro de la misma federación
+        // es cualquier otra federaciï¿½n, comparo que no haya otro de la misma federaciï¿½n
         } else if (strncmp(bolilla.equipo.federacion, grupo.bolilla[i].equipo.federacion, 3) == 0) {
             return false;
         }
