@@ -25,6 +25,7 @@ int main() {
     Consolidado gruposConsolidado;
 
     int lenConsolidado = 0;
+    char opcion;
 
     // ****************************************************** ********************
     // EJERCICIO 1 *********************
@@ -43,6 +44,15 @@ int main() {
     // ****************************************************** ********************
     // EJERCICIO 2 *********************
     // ******************************************************
+
+   
+    do {
+        cout << "Presiones S para iniciar el sorteo, 0 para salir."<<endl;
+        cin >> opcion;   
+        if (opcion=='0') return 0;
+        }while(opcion!='S');
+
+
     realizarSorteo(bolillero1, bolillero2, bolillero3, bolillero4, lenBol);
 
     // ****************************************************** ********************
@@ -51,7 +61,7 @@ int main() {
     cargarGruposEnVector(vecGrupos, regGrupo, gruposConsolidado, lenConsolidado);
     mostrarOrdenamientos(vecGrupos, lenConsolidado);
 
-    cin.get();
+    
 
     return 0;
 }
