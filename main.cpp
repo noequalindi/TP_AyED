@@ -20,7 +20,7 @@ int main() {
     GenerarArchivo regGrupo;
     Consolidado vecGrupos[50];
 	Consolidado gruposConsolidado;
-	
+	char opcion;
 	int lenConsolidado=0;
   
     // ****************************************************** //
@@ -34,7 +34,14 @@ int main() {
     // ****************************************************** //
     // ******************** EJERCICIO 2 ********************* //
     // ****************************************************** //
-    realizarSorteo(bolillero1, bolillero2, bolillero3, bolillero4, lenBol);
+    
+    do {
+        cout << "Presiones s para iniciar el sorteo, 0 para salir."<<endl;
+        cin >> opcion;   
+        if (opcion=='0') return 0;
+        }while(opcion!='s');
+    
+	realizarSorteo(bolillero1, bolillero2, bolillero3, bolillero4, lenBol);
     
     
   	// ****************************************************** //

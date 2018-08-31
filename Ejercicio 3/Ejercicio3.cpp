@@ -121,8 +121,7 @@ void cargarGruposEnVector(Consolidado vecGrupos[], GenerarArchivo regGrupo, Cons
 	fclose(grupoF);
 	fclose(grupoG);
 	fclose(grupoH);
-	
-	
+
     return;
 }
 
@@ -144,7 +143,7 @@ Consolidado temp;
 
     for ( int i = 0; i < lenConsolidado; i++ ){
     	
-        for ( int j = i + 1; j < lenConsolidado; j++ ){
+        for ( int j = i; j < lenConsolidado; j++ ){
 
             // strcoll() devuelve -1 si el 1º parametro es mayor que el 2º, 0 si el 1º es igual al 2º, o
 
@@ -165,6 +164,7 @@ Consolidado temp;
 
                 vecGrupos[j].equipo = temp.equipo;
 				strcpy (vecGrupos[j].letra, temp.letra);
+
             }
 
         }
@@ -245,47 +245,91 @@ Consolidado temp;
     return;
 }
 
-void mostrarOrdenamientos(Consolidado vecGrupos[], int lenConsolidado)
+void mostrarOrdenamientos(Consolidado vecGrupos[], int lenConsolidado) 
 {
+    int opcion;
+    do {
 
-    cout<< "____________________________________________________\n"<<endl;
-	cout << "***** ORDENAMIENTO DEL VECTOR POR GRUPO ***** \n";
-    cout<< "____________________________________________________\n"<<endl;
-    
-    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+        cout << endl << endl;
+        cout << "Ingrese una opción para listar :" << endl;
+        cout << "1- Por Grupo." << endl;
+        cout << "2- Por Confederacion." << endl;
+        cout << "3- Por Nombre." << endl;
+        cout << "4- Por Grupo y Federacion." << endl;
+        cout << "5- Por Grupo, Federacion y Nombre." << endl;
+        cout << "#-Cualquier otra tecla para salir." << endl;
 
-    cout<< "____________________________________________________\n"<<endl;
-	cout << "***** ORDENAMIENTO DEL VECTOR POR CONFEDERACION ***** \n";
-    cout<< "____________________________________________________\n"<<endl;
-    
-    ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
-    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
-	ordenaVectorPorNombre(vecGrupos, lenConsolidado);
+        cin >> opcion;
 
-    cout<< "____________________________________________________\n"<<endl;
-	cout << "***** ORDENAMIENTO DEL VECTOR POR NOMBRE ***** \n";
-    cout<< "____________________________________________________\n"<<endl;
-	
-	ordenaVectorPorNombre(vecGrupos, lenConsolidado);
-    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
-	
-    cout<< "____________________________________________________\n"<<endl;
-	cout << "***** ORDENAMIENTO DEL VECTOR POR GRUPO Y FEDERACION ***** \n";
-    cout<< "____________________________________________________\n"<<endl;
-    
-    ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
-	ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
-	mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+        switch (opcion) {
+            case 1:
+                {
+                    cout << "____________________________________________________\n" << endl;
+                    cout << "***** ORDENAMIENTO DEL VECTOR POR GRUPO ***** \n";
+                    cout << "____________________________________________________\n" << endl;
 
-    cout<< "____________________________________________________\n"<<endl;
-	cout << "***** ORDENAMIENTO DEL VECTOR POR GRUPO, FEDERACION Y NOMBRE\n";
-    cout<< "____________________________________________________\n"<<endl;
-    
-	ordenaVectorPorNombre(vecGrupos, lenConsolidado);
-	ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
-	ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
-	mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
-	
+                    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+                    break;
+                }
+
+            case 2:
+                {
+                    cout << "____________________________________________________\n" << endl;
+                    cout << "***** ORDENAMIENTO DEL VECTOR POR CONFEDERACION ***** \n";
+                    cout << "____________________________________________________\n" << endl;
+
+                    ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
+                    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+                    
+                    break;
+                }
+
+            case 3:
+                {
+                    cout << "____________________________________________________\n" << endl;
+                    cout << "***** ORDENAMIENTO DEL VECTOR POR NOMBRE ***** \n";
+                    cout << "____________________________________________________\n" << endl;
+
+                    ordenaVectorPorNombre(vecGrupos, lenConsolidado);
+                    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+                    break;
+                }
+
+            case 4:
+                {
+                    cout << "____________________________________________________\n" << endl;
+                    cout << "***** ORDENAMIENTO DEL VECTOR POR GRUPO Y FEDERACION ***** \n";
+                    cout << "____________________________________________________\n" << endl;
+
+                    ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
+                    ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
+                    mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+                    
+                    break;
+                }
+
+            case 5:
+                {
+                    cout << "____________________________________________________\n" << endl;
+                    cout << "***** ORDENAMIENTO DEL VECTOR POR GRUPO, FEDERACION Y NOMBRE\n";
+                    cout << "____________________________________________________\n" << endl;
+                    
+			
+                    ordenaVectorPorNombre(vecGrupos, lenConsolidado);
+					ordenaVectorPorFederacion(vecGrupos, lenConsolidado);
+					ordenaVectorPorGrupo(vecGrupos, lenConsolidado);
+					mostrarVectorGruposConsolidado(vecGrupos, lenConsolidado);
+                    break;
+                }
+
+            default:
+                {
+                    return;
+                }
+        }
+
+    } while (1);
+
 	return;
 }
 
